@@ -8,3 +8,6 @@
 
 这里-t指定构建出来的镜像名称
 . 指代当前目录
+
+
+> linux命令查询 [链接](https://wangchujiang.com/linux-command/)
