@@ -14,10 +14,12 @@
 
 ## 启动容器
 
-`docker run myFront`
+在容器关闭后, 我们可以通过`start`来启动一个容器
+`docker start myFront`
 
 ## 进入容器
 
+容器启动后,使用`exec`来进入容器
 `docker exec -it myFront /bin/bash`
 
 这里-t指定构建出来的镜像名称
