@@ -2,7 +2,7 @@ FROM ubuntu
 
 ENV PASSWD="siry"
 # 修改root密码为siry
-RUN echo "root:${PASSWD}}" | chpasswd \
+RUN echo "root:${PASSWD}" | chpasswd \
     #  可以考虑用替换阿里源  这里@起到分隔符的作用
     && sed -i 's@archive.ubuntu.com@mirrors.aliyun.com@g' /etc/apt/sources.list \
     && sed -i 's@security.ubuntu.com@mirrors.aliyun.com@g' /etc/apt/sources.list \
