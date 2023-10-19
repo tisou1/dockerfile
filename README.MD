@@ -5,6 +5,11 @@
 
 `docker build -t front .`
 
+-t 指定一个标签
+-f 指定dockerfile文件, 默认是Dockerfile, `
+`docker build -f Dockerfile-go -t front .`
+
+
 ## 创建容器
 
 `docker run --name myFront -it front:v1 /bin/zsh`
