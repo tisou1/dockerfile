@@ -36,6 +36,11 @@ RUN echo "root:${PASSWD}" | chpasswd \
     # 安装rust环境
     # && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     # 安装golang环境
-    && apt install -y golang-go
+    && apt install -y golang-go \
+    # 安装brew
+    && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
+    # 安装之后需要写入环境变量
+    && (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /root/.zshrc \
+    && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 
 
 
