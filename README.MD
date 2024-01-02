@@ -33,3 +33,7 @@
 . 指代当前目录
 
 > linux命令查询 [链接](https://wangchujiang.com/linux-command/)
+
+## 从ubuntu基础镜像构建的替换源, go的就不先替换了
+
+## 之前安装rust报错是因为他有交互的,使用 sh -s -- -y默认值

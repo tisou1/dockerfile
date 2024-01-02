@@ -24,17 +24,19 @@ RUN echo "root:${PASSWD}" | chpasswd \
     # 添加插件进.zshrc文件  这里/起到分隔符的作用
     && sed -i 's/plugins=(git)/plugins=(git zsh-syntax-highlighting zsh-autosuggestions)/' ~/.zshrc \
     # 安装fnm之前安装unzip, == 有时候可能安装不上吧
-    # && apt install -y unzip \
+    && apt install -y unzip \
     # 安装fnm
-    # && curl -fsSL https://fnm.vercel.app/install | bash
+    && curl -fsSL https://fnm.vercel.app/install | bash \
+    &&  echo 'export PATH="/root/.local/share/fnm:$PATH"' >> /root/.zshrc \
+    &&  echo 'eval "`fnm env`"' >> /root/.zshrc \
     # 安装nvm
-    && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash \
+    # && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash \
     # 写入到zsh配置文件, 默认是写到了bash的配置文件中
-    && echo 'export NVM_DIR="$HOME/.nvm" \n\
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  \n\
-        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.zshrc \
+    # && echo 'export NVM_DIR="$HOME/.nvm" \n\
+    #     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  \n\
+    #     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.zshrc \
     # 安装rust环境
-    # && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
     # 安装golang环境
     && apt install -y golang-go \
     # 安装brew
@@ -42,5 +44,6 @@ RUN echo "root:${PASSWD}" | chpasswd \
     # 安装之后需要写入环境变量
     && (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /root/.zshrc \
     && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 
-
+# 启动容器时默认执行 Zsh shell
+CMD ["zsh"]
 

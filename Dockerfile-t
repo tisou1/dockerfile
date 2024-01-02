@@ -1,0 +1,23 @@
+FROM ubuntu
+
+ENV PASSWD="siry"
+# 修改root密码为siry
+RUN echo "root:${PASSWD}" | chpasswd \
+    # 更新软件包表
+    && apt update \
+    # 安装vim, ubuntu镜像中不带, -y会自动确认所有提示,免得要手动输入yes
+    && apt install vim -y \
+    # 安装git
+    # && apt install -y git  \
+    # 安装zsh
+    && apt install -y zsh \
+    && apt install -y curl \
+    && apt install -y unzip \
+    # 安装fnm
+    && curl -fsSL https://fnm.vercel.app/install | bash \
+    &&  echo 'export PATH="/root/.local/share/fnm:$PATH"' >> /root/.zshrc \
+    &&  echo 'eval "`fnm env`"' >> /root/.zshrc \
+    # && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
+    # # 安装之后需要写入环境变量
+    # && (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /root/.zshrc \
+    # && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 

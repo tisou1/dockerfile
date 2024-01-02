@@ -27,14 +27,14 @@ RUN echo "root:${PASSWD}" | chpasswd \
     && apt install -y unzip \
     # 安装fnm
     && curl -fsSL https://fnm.vercel.app/install | bash \
-    && echo "source ~/.bashrc" >> ~/.zshrc 
+    && echo "source ~/.bashrc" >> ~/.zshrc \
     # 安装nvm
     # && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash \
     # 写入到zsh配置文件, 默认是写到了bash的配置文件中
     # && echo 'export NVM_DIR="$HOME/.nvm" \n\
     #    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  \n\
     #    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.zshrc \
-    # 安装rust环境(目前安装有点问题)
-    # && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh \
+    # 安装rust环境(目前安装有点问题)  问题是rust默认是有交互的, 使用sh -s -- -y 来使用默认值
+    # && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 # 启动容器时默认执行 Zsh shell
 CMD ["zsh"]
